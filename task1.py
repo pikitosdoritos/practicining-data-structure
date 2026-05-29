@@ -89,8 +89,13 @@ def get_adult_users(data):
 def count_users(data):
     return len(data["users"])
 
+# function №6 (count orders)
+def count_user_orders(data):
+    return {user["name"]: len(user["orders"]) for user in data["users"]}
+
 print(get_user_names(data))
 print(get_user_email(data))
 print(get_active_users(data))
 print(get_adult_users(data))
 print(count_users(data))
+print(count_user_orders(data))
