@@ -73,13 +73,7 @@ def get_user_email(data):
     dict_of_emails = {}
 
     for user in data["users"]:
-        user_email = user["contacts"].get("email")
-        user_name = user["name"]
-
-        if user_email:
-            dict_of_emails[user_name] = user_email
-        else:
-            dict_of_emails[user_name] = "No email"
+        dict_of_emails[user["name"]] = user["contacts"].get("email") or "No email"
 
     return dict_of_emails
 
