@@ -78,12 +78,19 @@ def get_user_email(data):
     return dict_of_emails
 
 # function №3 (get active users)
-def get_active_user(data):
-    active_user_list = [user["name"] for user in data["users"] if user["is_active"]]
+def get_active_users(data):
+    return [user["name"] for user in data["users"] if user["is_active"]]
 
-    return active_user_list
+# function №4 (get adult users)
+def get_adult_users(data):
+    return [user["name"] for user in data["users"] if user["age"] >= 18]   
 
+# function №5 (count users)
+def count_users(data):
+    return len(data["users"])
 
 print(get_user_names(data))
 print(get_user_email(data))
-print(get_active_user(data))
+print(get_active_users(data))
+print(get_adult_users(data))
+print(count_users(data))
