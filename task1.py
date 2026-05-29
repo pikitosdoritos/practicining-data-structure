@@ -77,5 +77,13 @@ def get_user_email(data):
 
     return dict_of_emails
 
+# function №3 (get active users)
+def get_active_user(data):
+    active_user_list = [user["name"] for user in data["users"] if user["is_active"]]
+
+    return active_user_list
+
+
 print(get_user_names(data))
 print(get_user_email(data))
+print(get_active_user(data))
