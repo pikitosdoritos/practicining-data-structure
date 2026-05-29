@@ -88,9 +88,55 @@ def count_users(data):
 def count_user_orders(data):
     return {user["name"]: len(user["orders"]) for user in data["users"]}
 
+# function №7 (get all items from all orders)
+def get_ordered_items(data):
+    return [
+        item["title"]
+        for user in data["users"]
+        for order in user["orders"]
+        for item in order["items"]
+    ]
+    
+# function №8 (count sum of orders)
+def count_sum_of_orders(data):
+    return sum(
+        item["price"] * item["qty"]
+
+        for user in data["users"]
+        for order in user["orders"]
+        for item in order["items"]
+    )
+
+# function №9 (count sum of orders with status 'paid')
+def count_sum_of_paid_orders(data):
+    return sum(
+        item["price"] * item["qty"]
+
+        for user in data["users"]
+        for order in user["orders"] if order["status"] == "paid"
+        for item in order["items"]
+    )
+
+# function №10 (find the most expensive item)
+def get_most_expensive_item(data):
+    items = {
+        item["title"]: item["price"]
+
+        for user in data["users"]
+        for order in user["orders"]
+        for item in order["items"]
+        }
+    
+    return max(items.items(), key=lambda x: x[1])
+    
+
 print(get_user_names(data))
 print(get_user_email(data))
 print(get_active_users(data))
 print(get_adult_users(data))
 print(count_users(data))
 print(count_user_orders(data))
+print(get_ordered_items(data))
+print(count_sum_of_orders(data))
+print(count_sum_of_paid_orders(data))
+print(get_most_expensive_item(data))
