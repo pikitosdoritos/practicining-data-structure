@@ -70,12 +70,7 @@ def get_user_names(data):
 
 # function №2 (get name: email)
 def get_user_email(data):
-    dict_of_emails = {}
-
-    for user in data["users"]:
-        dict_of_emails[user["name"]] = user["contacts"].get("email") or "No email"
-
-    return dict_of_emails
+    return {user["name"]: user["contacts"].get("email") or "No email" for user in data["users"]}
 
 # function №3 (get active users)
 def get_active_users(data):
