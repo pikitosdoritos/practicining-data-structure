@@ -66,11 +66,22 @@ data = {
 
 # function №1 (get name of users)
 def get_user_names(data):
-    list_of_names = []
+    return [user["name"] for user in data["users"]]
+
+# function №2 (get name: email)
+def get_user_email(data):
+    dict_of_emails = {}
+
     for user in data["users"]:
-        list_of_names.append(user["name"])
+        user_email = user["contacts"].get("email")
+        user_name = user["name"]
 
-    return list_of_names
+        if user_email:
+            dict_of_emails[user_name] = user_email
+        else:
+            dict_of_emails[user_name] = "No email"
 
+    return dict_of_emails
 
 print(get_user_names(data))
+print(get_user_email(data))
